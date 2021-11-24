@@ -1,0 +1,266 @@
+-- Ejercicio 1 en clases 
+
+entity circuito
+port(a, b, c, d, e, f, g, h: in bit;
+	F1: out);
+end circuito;
+------------------------------------------------------------
+
+-- Ejercicio 2 en clases
+
+entity circuito is 
+port(A3, A2, A1, A0, B3, B2, B1, B0: in bit;
+	S3, S2, S1, S0: out bit;
+	C3,C2,C1,C0: inout bit:
+end ciruito is;
+
+
+-----------------------------------------------------------
+
+entity Proyecto is
+port (A,B : in bit_vector(3 downto 0); C: inout bit_vector(3 downto 0); S: out biut_vector(3 downto 0));
+
+end Proyecto;
+     
+------------------------------------------------------------------
+https://www.canva.com/design/DAEtT9z9vz4/liLusXaAkSQGBPg30qsotQ/view?utm_content=DAEtT9z9vz4&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton#7
+
+-- Code your design here
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity Proyecto1 is 
+port (Q3, Q2, Q1, Q0: in bit;
+		F1, F2, F3, F4, F5, F6, F7: out bit;
+        
+end Proyecto1;
+
+
+-----------------------------------------------------------------------
+
+--ejercicios de la UNL
+--Demo Vectores 
+
+entity Proyecto2 is
+port (Q : in bit_vector(3 downto 0); F : out bit_vector(0 to 7));
+
+end Proyecto2;
+--------------------------------------------------------------------------
+
+https://www.edaplayground.com/?fbclid=IwAR3-lughOsZAtEyY56B4WfFe2FtD4A3b5pYizftSOqSsi1YhvXrEKmLqNrs
+
+--------------------------------------------------------------------------
+entity Bloque is
+port (X: in std_logic_vector(1 downto 0); A,B: in std_logic; Z: out std_logic_vector(0 to 3));
+
+end Bloque;
+--------------------------------------------------------------------------
+
+-- formato de libreria
+--use nombre_libreria.nombrepaquete.all;
+use IEEE.std_logic_1164.all;
+use word.std_arith.all;
+
+entity Sumador1 is
+port (A,B: in std_logic_vector(0 to 1);  S: out std_logic_vector(0 to 1));
+end Sumador1;
+------------------------------------------------------------------------------
+
+-- Ejercicio de estilo de flujo de datos 
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+
+entity TAbla is
+port (A,B: in std_logic; F0, F1: out std_logic);
+end Tabla;
+
+architecture flujo of tabla is 
+begin 
+	F0 <= '1' when (A='0' and B='0') else
+    	  '1' when (A='0' and B='1') else
+          '0';
+    F1 <= '0' when (A='1' and B='1') else
+    	  '1';
+end flujo 
+----------------------------------------------------------------------
+
+
+entity composicion is
+port (A,B: in std_logic; C: out std_logic);
+end funcional;
+
+architecture e_funcional of funcional is 
+begin 
+process(A,B)
+begin
+	if A = B then 
+    C <= '1';
+    else C <= '0';
+    end if;
+end process;
+end e_funcional ;
+---------------------------------------------------------------------
+
+
+-- Ejercicio de estilo de flujo de datos 
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+
+entity composicion is
+port (A,B: in std_logic; F: out std_logic);
+end  composicion;
+
+use work.gates.all;
+architecture estructural of composicion is 
+signal x: bit_vector(0 to 2);
+begin
+U0: and2 port map (B,C, x(0));
+
+U1: and2 port map (C,A, x(1));
+
+U2: and2 port map (A,B, x(2));
+
+U3: or3 port map (x(0), x(1), x(2),F);
+
+end estructural
+
+------------------------------------------------------------------
+
+-- Code your testbench here
+library IEEE;
+use IEEE.std_logic_1164.all;
+entity leccion is
+port (A,B,C,D: in std_logic: N : out std_logic);
+end leccion;
+
+use work.gates.all;
+
+architecture estructular of composicion is 
+signal x: bit_verctor (0 to 2);
+begin 
+U0: or1 port map (A,B x (0));
+
+U1: and2 port map (C,D x (1));
+
+U2: xnor3 port map (x(0), x(1),f1);
+
+end estructural;
+-----------------------------------------------------------------
+
+
+-- Sumador ---------
+library IEEE;
+use IEEE.std_logic_1164.all;
+entity sumador is
+port (A,B: in std_logic_vector(0 to 3): 
+S : out stdl_logic_vector(0 to 3);
+Cout: out stdl:logix;
+
+end sumador;
+
+use work.gates.all;
+
+architecture arqsumador of sumador is 
+signal C: stf_logic_verctor (0 to 2);
+begin
+
+S(0) <= A(0) xor B(0);
+C(0) <= A(0) and B(0);
+S(1) <= (A(1) xor B(1) xor C(0));
+C(1) <= (A(1) and B(1)) or (C(0) and (A(1) xor B(1)));
+S(2) <= (A(2) xor B(2) xor  C(1));
+C(2) <= (A(2) and B(2)) or (C(1) and (A(2) xor B(2)));
+S(3) <= (A(3) xor B(3) xor C(2));
+Cout <= (A(3) and B(3)) or (C2)  and (A(3) xor B(3)));
+
+
+end arqsumador;
+
+--------------------------------------------------------------------------
+
+
+-- Code actividad en clase
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity actividad is 
+port (a,b,c,d,e,f: in std_logic;
+x1,x2,x3: out stdl_logic;
+end actividad;
+architecture arqsum of actividad is
+
+begin 
+X1 <= a xnor b;
+x2 <= ((c nand d) or x1 ) and ((e xor f) and (c and d))
+x3 <= (e xor f) and (c and f);
+
+end arqsum;
+-------------------------------------------------------------------------------
+
+https://www.canva.com/design/DAEtT9z9vz4/gnRnQ1TYzfMagRlUY75VeQ/edit
+
+--------------------------------------------------------------------------------
+
+-- Code your testbench here
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity twe is 
+port (a,b,c: in stdl_logic; f: out stdl_logic);
+end twe;
+
+architecture demotwe of twe is 
+begin
+
+
+F <= '1' when (a='0', and b='0' and c='0') else '1' when (a='1', and b='1' and c='0') else '1' when (a='1', and b='1' and c='1') else '0';
+
+end demotwe;
+----------------------------------------------------------------------------
+
+-- Code your design here
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity twe1 is 
+port (E0,E1,E2,E3: in stdl_logic; SELA,SELB,SELC: in  stdl_logic: f:out stdl_logic);
+end twe1;
+
+architecture demotwe1 of twe1 is 
+begin
+
+f <= E3 when SELC = '1' else 
+	 E2 when SELB = '1' else
+     E1 when SELA = '1' else
+     E0;
+
+end demotwe1;
+---------------------------------------------------------------------------------
+
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity decodificadorbcd is 
+port (dec: in stdl_logic_vector(3 downto o); seg: out stdl_logic_vector (6 downto 0);
+end decodificadorbcd;
+
+architecture ejemplitobcd of decodificadorbcd is 
+begin
+with dec select 
+--      abcdefg
+seg <= '0000001' when '0000'
+	   '1001111' when '0001'
+       '0010010' when '0010'
+       '0000110' when '0011'
+       '1001100' when '0100'
+       '0100100' when '0101'
+       '1100000' when '0110'
+       '0001110' when '0111'
+       '0000000' when '1000'
+       '0000100' when 
+
+
+end ejemplitobcd;
+----------------------------------------------------------------------------------
