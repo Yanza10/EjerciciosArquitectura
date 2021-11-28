@@ -264,3 +264,133 @@ seg <= '0000001' when '0000'
 
 end ejemplitobcd;
 ----------------------------------------------------------------------------------
+-- Comparador
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity comparador is 
+	Port( a,b: in std_logic:vector (3 downto 0);
+    	  X,Y,Z: out stdl_logic);
+end comparador;
+
+architecture arqcomparador of comparador is 
+
+begin
+process a,b 
+
+	if (a = b) then 
+    x <= '1';y <= '0'; z <= '0';elsif (a > b) then
+    x <= '0'´; y <= '1';z <= '0'; else 
+    x <= '0'; y <= '0'; z <= '1'; 
+    end if; 
+    
+    end process;
+    
+    end arqcomparador
+-----------------------------------------------------------------------------------------
+-- Code your design here
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity bcd/dec is 
+	Port( x: in std_logic_vector (3 downto 0);
+    	  d0,d1,d2,d3,d4,d5,d6,d7,d8,d9: out stdl_logic);
+end bcd/dec
+
+architecture arqbcd/dec of bcd/dec
+
+begin 
+process x
+
+d0 <= '1';d1 <= '1';d2 <= '1';d3 <= '1';d4 <= '1';d5 <= '1';d6 <= '1';d7 <= '1';d8 <= '1';d9 <= '1';
+
+	if (x = "0000") then
+    	d0 <='0';
+    elsif (x= "0001") then
+    	d1<= '0';
+    elsif (x= "0010") then 
+    	d2<= '0';
+    elsif (x= "0011") then 
+    	d3<= '0';
+    elsif (x= "0100") then 
+    	d4<= '0';
+    elsif (x= "0101") then 
+     	d5<= '0';
+    elsif (x= "0110") then 
+    	d6<= '0';
+    elsif (x= "0111") then 
+    	d7<= '0';
+    elsif (x= "1000") then 
+   	 	d8<= '0';
+    else
+    	d9 <= '0';
+       	end if;
+    end process;
+    
+    end arqbcd/dec;
+-----------------------------------------------------------------------------	 
+-- Code your design here
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity dec/bin is 
+	Port(a: in integer range 0 to 9;
+    	  d: out stdl_logic_vector(0 to 3));
+end dec/bin
+
+architecture arqbdec/bin of dec/bin
+
+begin 
+process x
+
+
+	if a = 0 then d <= "0000"
+    elsif a = 1 then d <= "0001";
+    elsif a = 2 then d <= "0010";
+    elsif a = 3 then d <= "0011";
+    elsif a = 4 then d <= "0100";
+    elsif a = 5 then d <= "0101";
+    elsif a = 6 then d <= "0110";
+    elsif a = 7 then d <= "0111";
+    elsif a = 8 then d <= "1000";
+    elsif a = 9 then d <= "0000";
+    
+       	end if;
+    end process;
+    
+    end arqbcd/dec
+-------------------------------------------------------------
+
+-- Code your design here
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity deco is 
+	Port(a: in stdl_logic_vector(3 downto 0);
+    	 d: out stdl_logic_vector(6 downto 0));
+end deco
+
+architecture arqbdeco of deco
+
+begin 
+process (a) begin
+	case A is 
+	when "0000" => D <= "0000001";
+        when "0001" => D <= "1001111";
+        when "0010" => D <= "0010010";
+        when "0011" => D <= "0000110";
+        when "0100" => D <= "1001100";
+        when "0101" => D <= "0100100";
+        when "0110" => D <= "0100000";
+        when "0111" => D <= "0001110";
+        when "1000" => D <= "0000000";
+        when "1001" => D <= "0000100";
+        when others => D <= "1111111";
+	
+    
+       	end case ;
+    end process;
+    
+    end arqdec   
+
+
